@@ -7,6 +7,7 @@ function [ lowd_x, projMat ] = multiDim_lda( X, y, nDims )
 
     lowd_x = zeros(nSamp,nDims);
     projMat = zeros(xDim,nDims);
+    dPrimes = zeros(1,nDims);
     
     newX = X;
     for iDim = 1:nDims
@@ -22,6 +23,9 @@ function [ lowd_x, projMat ] = multiDim_lda( X, y, nDims )
             end
         end
         projMat(:,iDim) = currProjVec;
+        proj1 = lowd_x(y==params.classLabels(1));
+        proj2 = lowd_x(y==params.classLabels(2));
+        dPrimes(iDim) = abs(mean(proj1)-mean(proj2))/sqrt((var(proj1,1)+var(proj2,1))/2);
     end
     
 end
