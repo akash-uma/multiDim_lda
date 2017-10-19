@@ -1,4 +1,4 @@
-function [ lowd_x, projMat ] = multiDim_lda( X, y, nDims )
+function [ lowd_x, projMat, dPrimes ] = multiDim_lda( X, y, nDims )
 
     [nSamp,xDim] = size(X);
     if nDims > xDim-1
